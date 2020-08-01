@@ -48,19 +48,16 @@ int main() {
       int sum=0;
       
       while(temp>0){
-      if(primes[k] != -1){	
-	        if(temp - primes[k] >0){
-	            printf("%d ", primes[k]);
-	            temp  = temp - primes[k];
-	            sum = sum + primes[k];
-	        }
-	        else{
-	            break;
-	        }
-    	}
+        if(temp - primes[k] >0){
+            printf("%d ", primes[k]);
+            temp  = temp - primes[k];
+            sum = sum + primes[k];
+        }
+        else{
+            break;
+        }
         k++;
       }
-      printf("%d ", n-sum);
 
     return 0;
   }
