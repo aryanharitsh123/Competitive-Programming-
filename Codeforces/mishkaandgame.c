@@ -3,31 +3,26 @@ typedef long long int lli;
 int main() {
   int n;
   scanf("%d", &n);
-  int count_mishka=0,count_chris=0;
-  int temp=n;
+  int temp = n;
+  int mishka=0;
+  int chris=0;
   while(temp--){
-      int m,c=0;
-      scanf("%d %d", &m ,&c);
-      if(m>c){
-          count_mishka++;
+      int a,b;
+      scanf("%d %d", &a, &b);
+      if(a>b){
+          mishka++;
       }
-      if(c>m){
-          count_chris++;
+      else if(a<b){
+          chris++;
       }
-  }
-  double chris = count_chris/n;
-  double mishka = count_mishka/n;
-  if(count_chris==count_mishka){
-      printf("Friendship is magic!^^");
-  }
-  if(chris>mishka){
-      printf("Chris");
-  }
-  if(mishka/n>chris){
-      printf("Mishka");
   }
 
-  printf("%d %d %d", chris, mishka, n);
+  if((mishka)>(chris))
+    printf("Mishka\n");
+  else if((chris)>(mishka))
+    printf("Chris\n");
+  else if (mishka==chris)
+    printf("Friendship is magic!^^\n");
   return 0;
 }
 

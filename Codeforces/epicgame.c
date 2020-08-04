@@ -1,53 +1,45 @@
 #include<stdio.h>
-typedef long long int lli;
+#include<stdlib.h>
 
 int gcd(int a, int b){
-  if(a==0 || b==0){
-      return 0;
-  }
-  else{
-    for(int i=1;i<=a && i<=b;++i){
-        if(a%i==0 && b%i==0)
-          return i;
-    }
-  }
+    if(b==0)
+      return a;
+    return gcd(b,a%b);
 }
 
+typedef long long int lli;
 int main() {
   int a,b,n;
-  scanf("%d %d %d\n", &a, &b, &n);
-  int count =0;
-
+  scanf("%d %d %d", &a, &b, &n);
+  int count=0;
   while(1){
+      int s=0,as=0,temp1,temp2;
       if(count%2==0){
-          int temp1=gcd(a,n);
-          if(temp1<=n){
+          temp1 = gcd(a,n);
+          if(n-temp1>=0){
               n = n-temp1;
               count++;
           }
-          else{
-              break;
-          }
-        }
-      if(count%2==1){
-          int temp2=gcd(n,b);
-          if(temp2<=n){
-              n=n-temp2;
+          else
+            break;
+      }
+      else if(count%2==1){
+          temp2 = gcd(b,n);
+          if(n-temp2>=0){
+              n = n-temp2;
               count++;
           }
-          else{
+          else
             break;
-          }
       }
   }
 
   if(count%2==0){
-      printf("%d\n", 0);
+      printf("%d", 1);
   }
-  else{
-    printf("%d\n", 1);
-  }
-
+  else if(count%2==1)
+    printf("%d", 0);
+ 
   return 0;
 }
 

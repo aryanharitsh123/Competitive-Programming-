@@ -4,10 +4,10 @@ int main() {
   int testcases;
   scanf("%d", &testcases);
   while(testcases--){
-      lli a,b,c,d;
-      scanf("%lld %lld %lld %lld", &a, &b, &c, &d);
-
-      printf("%lld %lld %lld\n", a,c,c);
+      int n,m,ans;
+      scanf("%d %d", &n, &m);
+      ans = ((n*m)+1)/2;
+      printf("%d\n", ans);
   }
   return 0;
 }

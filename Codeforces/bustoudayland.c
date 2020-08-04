@@ -3,35 +3,48 @@ typedef long long int lli;
 int main() {
   int n;
   scanf("%d", &n);
-  int flag = 0;
-  int arr[6][n];
+  char arr[n][6];
+  int flag= 0;
+  int rowindex=0;
+  int columnindex=0;
+
   for(int x=0;x<n;x++){
-      for(int y=0;y<5;y++){
+      for(int y=0;y<=5;y++){
           scanf("%c", &arr[x][y]);
       }
   }
+  
+  for(int i=0;i<n;i++){
+      if(arr[i][1]=='O' && arr[i][2]== 'O'){
+        arr[i][1] = '+';
+        arr[i][2] = '+';
+        flag=1;
+      }
 
-  for(int a=0;a<n;a++){
-      if(arr[a][0]=='O' && arr[a][1]=='O'){
-          arr[a][0] = '+';
-          arr[a][1] = '+';
-          flag = 1;
-          break;
+      else if(arr[i][4]=='O' && arr[i][5]=='O'){
+          arr[i][4] = '+';
+          arr[i][5] = '+';
+          flag=1;
       }
-      else if(arr[a][3]=='O' && arr[a][4]=='O'){
-          arr[a][3] = '+';
-          arr[a][4] = '+';
-          flag = 1;
-          break;
-      }
+      if(flag==1)
+        break;
+  
   }
 
-  if(flag ==1){
-      for(int i=0;i<=n;i++){
-          for(int j=0;j<=5;j++){
-              printf("%c", arr[i][j]);
+
+  if(flag==1){
+      printf("YES\n");
+      for(int a=0;a<n;a++){
+          for(int b=0;b<=5;b++){
+              printf("%c", arr[a][b]);
           }
       }
   }
+  else{
+    printf("NO\n");
+  }
+  return 0;
 }
+
+
 
