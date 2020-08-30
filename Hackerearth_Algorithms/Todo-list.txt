@@ -1,0 +1,3 @@
+Binary Search:
+* https://www.codechef.com/JUNE20B/problems/GUESSG
+
