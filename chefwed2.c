@@ -33,8 +33,9 @@ int main() {
           printf("\n");
       }
       
-      printf("%d", ans);
+      printf("%d\n", ans);
   }
   return 0;
 }
 
+// added new line as it needed int multiple testcases.
