@@ -36,3 +36,4 @@ int main() {
   return 0;
 }
 
+/// \n missing only 10 points (partial)
