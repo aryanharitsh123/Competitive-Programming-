@@ -70,7 +70,7 @@ bool solveNQ(){
 
 }
 
-
+// main func
 int main() {
   solveNQ();
   return 0;
