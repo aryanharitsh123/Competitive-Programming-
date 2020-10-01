@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<string.h>
-typedef long long int lli;
 int main() {
   char s[1001];
   scanf("%[^\n]%*c", s);
@@ -10,3 +9,4 @@ int main() {
   return 0;
 }
 
+// removed long long int , question is based on Strings only
