@@ -26,11 +26,11 @@ int main() {
           printf("second\n");
         
         else
-          printf("draw\n");
+          printf("draw");
       }
 
       if(n==3){
-          printf("second\n");
+          printf("\nsecond\n");
       }
       if(n==2 || n==1){
         printf("first\n");
