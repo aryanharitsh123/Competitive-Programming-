@@ -1,8 +1,8 @@
 #include<stdio.h>
 typedef long long int lli;
 int main() {
-  int n,x,t;
-  scanf("%d %d %d", &n,&x,&t);
+  lli n,x,t;
+  scanf("%lld %lld %lld", &n,&x,&t);
   int ans = 0;
   int time=0;
   while(ans<n){
@@ -13,7 +13,7 @@ int main() {
     }
   }
 
-  printf("%d", time);
+  printf("%lld", time);
   return 0;
 }
-
+//use long long int instead of normal int due to overflow.
