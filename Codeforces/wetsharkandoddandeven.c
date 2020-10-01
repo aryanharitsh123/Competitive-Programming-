@@ -33,7 +33,7 @@ int main() {
   else if(countofeven%2==0 && countofodd%2==1){
       for(int i=n-1;i>=0;i--){
           if(arr[i]%2==1){
-              sum = sum + arr[i];
+              sum += arr[i];
               countofodd--;
           }
           else{
@@ -45,11 +45,11 @@ int main() {
   else if(countofeven%2==1 && countofodd%2==0){
       for(int i=n-1;i>=0;i--){
           if(arr[i]%2==0){
-              sum = sum + arr[i];
+              sum += arr[i];
               countofeven--;
           }
           else{
-              sum = sum+arr[i];
+              sum +=arr[i];
           }
       }
   }
