@@ -3,6 +3,7 @@
 int main(){
     int testcases;
     scanf("%d\n", &testcases);
+    //testing
     while(testcases--){
         char s[10001];
         int l,count;
@@ -10,7 +11,7 @@ int main(){
         l = strlen(s);
 
         if(l<=10){
-            printf("%s\n", s);
+            printf("%s\n \n", s);
         }
 
         else{
