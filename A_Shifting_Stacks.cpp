@@ -80,25 +80,26 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-
-void towerOfHanoi(int n, int from_rod,int to_rod, int aux_rod) 
-{ 
-    int count=1;
-    if (n == 1) 
-    { 
-        cout << from_rod << " " << to_rod<<endl; 
-        return; 
-    } 
-    towerOfHanoi(n - 1, from_rod, aux_rod, to_rod); 
-    cout << from_rod << " " << to_rod << endl; 
-    towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
-}
-
 void solve(int testcase) {
-  int n;
-  cin >> n;
-  cout << pow(2,n) - 1 << endl;
-  towerOfHanoi(n,1,3,2);
+    lli n;
+    cin >> n;
+    vector<lli> vec;
+    input(vec,n);
+    lli temp = (n*(n+1))/2;
+    lli sum=0;
+    bool ans = false;
+    for(int i=0;i<n;i++){
+        sum+=vec[i];
+        if(sumtemp){
+            cout << "YES" << endl;
+            ans = true;
+            break;
+            
+        }
+    }
+    if(!ans){
+        cout << "NO" << endl;
+    }
 }
 
 int main() {
@@ -107,7 +108,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  //cin >> testcases;
+  cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

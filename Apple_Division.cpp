@@ -80,8 +80,27 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+
+lli subs(lli arr[], lli i,lli diff,lli total){
+  if(i==0){
+    return abs((total-diff) - diff);
+  }
+
+  return min(subs(arr,i-1,diff+arr[i],total),subs(arr,i-1,diff,total));
+}
+
 void solve(int testcase) {
-    
+    int n;
+    cin >> n;
+    lli arr[n];
+    lli totalsum = 0;
+    for(int i=0;i<n;i++){
+      cin >> arr[i];
+      totalsum+=arr[i];
+    }
+
+    cout << subs(arr,n,0,totalsum);
+
 }
 
 int main() {
