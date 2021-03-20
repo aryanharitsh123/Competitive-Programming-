@@ -83,22 +83,36 @@ lli power(lli a,lli b) {
 void solve(int testcase) {
     lli n;
     cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+    vector<int> sum;
+    vector<int> a;
+    vector<int> b;
+
+    for(int i=0;i<n;i++){
+        int x,y;
+        cin >> x >> y;
+        a.pb(x);
+        b.pb(y);
+    }   
+
+    for(int i=0;i<n;i++){
+        int temp = a[i] + b[i];
+        sum.pb(temp);
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+
+    sort(all(a));
+    sort(all(b));
+    sort(all(sum));
+    lli temp1 = max(a[0],b[1]);
+    lli temp2 = max(a[1],b[0]);
+
+    int temp3 =  min(temp1,temp2);
+
+    int ans = min(sum[0],temp3);
+
+    cout << ans;
+    //output(sum);
+    //output(a);
+    //output(b);
 
 }
 
@@ -108,7 +122,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

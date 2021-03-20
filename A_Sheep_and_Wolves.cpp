@@ -81,25 +81,11 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli n;
-    cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
-    }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+    lli s,w;
+    cin >> s >> w;
 
+    string ans = (s<=w) ? "unsafe" : "safe";
+    cout << ans;
 }
 
 int main() {
@@ -108,7 +94,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

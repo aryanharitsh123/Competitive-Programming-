@@ -80,26 +80,65 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli n;
-    cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
-    }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
 
+lli max(lli a, lli b){
+  if(a>b){
+    return a;
+  }
+  else if(b>a){
+    return b;
+  }
+  return a;
+}
+
+lli min(lli a, lli b){
+  if(a>b){
+    return b;
+  }
+  else if(b>a){
+    return a;
+  }
+  return a;
+}
+
+void solve(int testcase)
+{
+    lli n, e, h, a, b, c;
+    cin >> n >> e >> h >> a >> b >> c;
+    lli ans = LLONG_MAX;
+    for (lli i = 0; i <= n; i++)
+    {
+        if (e < i or h < i)
+            break;
+        lli co = i * c;
+        lli le = n - i;
+        lli eg = e - i;
+        lli ba = h - i;
+        if (a < b)
+        {
+            lli o = min(le, eg / 2);
+            co += o * a;
+            le -= o;
+            if (ba / 3 < le)
+                continue;
+            co += le * b;
+            ans = min(ans, co);
+        }
+        else
+        {
+            lli s = min(le, ba / 3);
+            co += s * b;
+            le -= s;
+            if (eg / 2 < le)
+                continue;
+            co += le * a;
+            ans = min(ans, co);
+        }
+    }
+    if (ans != LLONG_MAX)
+        cout << ans << endl;
+    else
+        cout << "-1" << endl;
 }
 
 int main() {

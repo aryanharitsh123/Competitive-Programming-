@@ -83,23 +83,22 @@ lli power(lli a,lli b) {
 void solve(int testcase) {
     lli n;
     cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
-    }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+    vector<lli> v;
+    input(v);
 
+    if(n==2) cout << 1 << endl;
+
+    else{
+        vector<pair<lli,lli>> vec,vec1;
+
+        for(int i=0;i<n;i++){
+            vec.pb(make_pair(i+1,v[i]));
+        }
+
+
+
+
+    }
 }
 
 int main() {

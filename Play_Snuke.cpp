@@ -83,23 +83,21 @@ lli power(lli a,lli b) {
 void solve(int testcase) {
     lli n;
     cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+    lli ans = INT_MAX;
+    while(n--){
+        lli a,p,x;
+        cin >> a >> p >> x;
+        lli remaining = x - ((a/0.5))/2;
+        //cout << remaining;
+        if(remaining>0){
+            //cout << "HERE" << endl;
+            if(ans > p){
+                ans = p;
+            }
+        }
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
-
+    if(ans==INT_MAX) cout << -1;
+    else cout << ans;
 }
 
 int main() {
@@ -108,7 +106,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

@@ -81,25 +81,17 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli n;
-    cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
-    }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+    string s;
+    cin >> s;
+    bool p=false,c=false,m=false;
 
+    for(int i=0;i<s.length();i++){
+        if(s[i]=='P') p=true;
+        else if(s[i]=='C') c=true;
+        else m=true;
+    }
+    if(p&&c&&m) cout << "YES" << endl;
+    else cout <<"NO" << endl;
 }
 
 int main() {

@@ -81,24 +81,17 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli n;
-    cin >> n;
+    lli n, k;
+    cin >> n >> k;
     vector<lli> vec;
     input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+
+    lli ans = INT_MAX;
+    sort(vec.begin(),vec.end());
+    for(int i=0,j=k-1;j<n;i+=k){
+
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+    cout << ans << endl;
 
 }
 

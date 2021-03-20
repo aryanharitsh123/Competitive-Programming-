@@ -85,21 +85,27 @@ void solve(int testcase) {
     cin >> n;
     vector<lli> vec;
     input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+    vector<lli> ind(1e6,1);
+    
+    lli j=1;
+    lli cnt=1;
+    for(int i=0;i<n;i++){
+        
+        while(vec[i]--){
+            ind[cnt] = j;
+            cnt++;
+        }
+        j++;
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
 
+    lli k;
+    cin >> k;
+    for(int l=0;l<k;l++){
+        lli a;
+        cin >> a;
+        cout << ind[a] << endl;
+    }
+    
 }
 
 int main() {
@@ -108,7 +114,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

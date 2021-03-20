@@ -81,24 +81,31 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli n;
-    cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+    string s;
+    cin >> s;
+    vector<lli> freq(26,0);
+    lli len = s.length();
+    
+    for(int i=0;i<len;i++){
+        freq[s[i]-'a']++;
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
+    
+    int cnt_ones=0,even=0;
+    for(int i=0;i<26;i++){
+        if(freq[i]%2==0 && freq[i]!=0){
+            even+=freq[i];
+        }
+        if(freq[i]==1){
+            cnt_ones++;
+        }
+    }
+    //cout << cnt_ones << " " << even << endl;
+    if(cnt_ones>(even/2)){
+        cout << "NO" << endl;
+    }
+    else{
+        cout << "YES" << endl;
+    }
 
 }
 

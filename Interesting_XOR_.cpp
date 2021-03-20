@@ -80,26 +80,14 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli n;
-    cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
-    }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
 
+void solve(int testcase) {
+    ll c,a,b;
+    cin >> c;
+    ll cnt_bits = (int)log2(c);
+    b = pow(2, cnt_bits)-1;
+    a = b ^ c;
+    cout << a*b << endl;
 }
 
 int main() {

@@ -83,23 +83,17 @@ lli power(lli a,lli b) {
 void solve(int testcase) {
     lli n;
     cin >> n;
-    vector<lli> vec;
-    input(vec,n);
-    lli temp=0;
-    lli sum=0;
-    bool ans=true;
-    for (int i = 0; i < n; i++)
-    {
-      temp+=i;
-      sum+=vec[i];
-      if(sum<temp){
-        ans=false;
-        break;
-      }
+    lli ans=0;
+    set<lli> arr;
+    for(int i=2;i<=sqrt(n);i++){
+        for(int j=2;j<=32;j++){
+            if(pow(i,j)<=n){
+                arr.insert(pow(i,j));
+            }
+        }
     }
-    if(ans) cout << "YES\n";
-    else cout << "NO\n";
-
+    cout << n-arr.size();
+    //output(vec);
 }
 
 int main() {
@@ -108,7 +102,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
