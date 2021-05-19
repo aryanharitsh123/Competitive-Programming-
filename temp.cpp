@@ -1,154 +1,93 @@
-#include<bits/stdc++.h>
-
+#pragma GCC optimize("Ofast", "unroll-loops")
+#include <bits/stdc++.h>
 using namespace std;
-typedef long long int lli;
 
-#define all(arr) arr.begin(),arr.end()
-#define f first
-#define s second
-#define debug1(x) cout<<x<<"\n"
-#define debug2(x,y) cout<<x<<" "<<y<<"\n"
-#define debug3(x,y,z) cout<<x<<" "<<y<<" "<<z<<"\n"
-#define nl cout<<"\n";
-#define pq priority_queue
-#define inf 0x3f3f3f3f
-#define test cout<<"abcd\n";
-#define pi pair<int,int>
-#define pii pair<int,pi>
-#define pb push_back
-#define gc getchar_unlocked
-#define fo(i,n) for(i=0;i<n;i++)
-#define Fo(i,k,n) for(i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
-#define ll long long
-#define si(x)	scanf("%d",&x)
-#define sl(x)	scanf("%lld",&x)
-#define ss(s)	scanf("%s",s)
-#define pl(x)	printf("%lld\n",x)
-#define ps(s)	printf("%s\n",s)
-#define deb(x) cout << #x << "=" << x << endl
-#define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
-#define pb push_back
-#define mp make_pair
-#define F first
-#define S second
-#define clr(x) memset(x, 0, sizeof(x))
-#define sortall(x) sort(all(x))
-#define tr(it, a) for(auto it = a.begin(); it != a.end(); it++)
-#define PI 3.1415926535897932384626
-#define MOD 1000000007
-#define space ' '
-#define kick(t) cout << "Case #" << t+1 << ":" << endl;
+#define int long long
+#define double long double
+using pii = pair<int, int>;
+template<typename T>
+using Prior = std::priority_queue<T>;
+template<typename T>
+using prior = std::priority_queue<T, vector<T>, greater<T>>;
 
-typedef pair<ll, ll>	pl;
-typedef vector<int>		vi;
-typedef vector<ll>		vl;
-typedef vector<pii>		vpii;
-typedef vector<pl>		vpl;
-typedef vector<vi>		vvi;
-typedef vector<vl>		vvl;
+#define X first
+#define Y second
+#define eb emplace_back
+#define ALL(x) begin(x), end(x)
+#define RALL(x) rbegin(x), rend(x)
+#define fastIO() ios_base::sync_with_stdio(0), cin.tie(0)
 
-template <typename T>
-void input(vector<T> &arr,lli n) {
-  T temp;
-  for(lli i=0;i<n;i++) cin>>temp, arr.push_back(temp);
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+
+inline int getRand(int L, int R) {
+    if (L > R) swap(L, R);
+    return (int)(rng() % (uint64_t)(R - L + 1) + L);
 }
 
-template <typename T>
-void output(vector<T> arr) {
-  for(auto x:arr) cout<<x<<" ";
-  cout<<endl;
+template<typename T1, typename T2>
+ostream& operator << (ostream &os, pair<T1, T2> p) {
+    os << "(" << p.first << "," << p.second << ")";
+    return os;
 }
 
-
-template <typename T>
-void input_set(set<T> &arr,lli n) {
-  T temp;
-  for(lli i=0;i<n;i++) cin>>temp, arr.insert(temp);
-}
-
-lli mul(lli a, lli b) {
-  return (a%MOD*b%MOD)%MOD;
-}
-
-lli power(lli a,lli b) {
-  lli ans = 1;
-  while(b > 0) {
-    if(b&1)
-      ans = mul(ans, a);
-    a = mul(a,a);;
-    b >>= 1;
-  }
-  return ans;
-}
-
-lli max(lli a, lli b){
-  if(a>b){
-    return a;
-  }
-  else if(b>a){
-    return b;
-  }
-  return a;
-}
-
-lli min(lli a, lli b){
-  if(a>b){
-    return b;
-  }
-  else if(b>a){
-    return a;
-  }
-  return a;
-}
-
-void solve()
-{
-    ll n, e, h, a, b, c;
-    cin >> n >> e >> h >> a >> b >> c;
-    ll ans = INT_MAX;
-    for (ll i = 0; i <= n; i++)
-    {
-        if (e < i or h < i)
-            break;
-        ll co = i * c;
-        ll le = n - i;
-        ll eg = e - i;
-        ll ba = h - i;
-        if (a < b)
-        {
-            ll o = min(le, eg / 2);
-            co += o * a;
-            le -= o;
-            if (ba / 3 < le)
-                continue;
-            co += le * b;
-            ans = min(ans, co);
-        }
-        else
-        {
-            ll s = min(le, ba / 3);
-            co += s * b;
-            le -= s;
-            if (eg / 2 < le)
-                continue;
-            co += le * a;
-            ans = min(ans, co);
-        }
+template<typename T>
+ostream& operator << (ostream &os, vector<T> vec) {
+    for (int i = 0; i < vec.size(); ++i) {
+        if (i) os << " ";
+        os << vec[i];
     }
-    if (ans != INT_MAX)
-        cout << ans << endl;
-    else
-        cout << "-1" << endl;
+    return os;
 }
 
-int main() {
+const int maxn = 3E5 + 5;
+const int mod = 1E9 + 7;
 
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+vector<int> adj[maxn], subval, val;
+vector<pii> ch;
 
-  lli testcases=1;
-  cin >> testcases;
-  for(int testcase=0; testcase<testcases; testcase++) {
-    solve(testcase);
-  }
+void dfs(int now, int lst = -1) {
+    for (auto x : adj[now]) {
+        if (x == lst) continue;
+        dfs(x, now);
+    }
+
+    ch.clear();
+    for (auto x : adj[now]) {
+        if (x != lst) ch.eb(subval[x], x);
+    }
+    sort(RALL(ch));
+
+    int tok = 1;
+    for (auto [_val, id] : ch) val[id] = tok++;
+    for (auto x : adj[now]) {
+        if (x != lst) subval[now] += val[x] * subval[x];
+    }
+}
+
+void solve() {
+    int N, X; cin >> N >> X;
+
+    subval.assign(N, 1), val.assign(N, 0);
+    for (int i = 0; i < N; ++i) vector<int>().swap(adj[i]);
+
+    for (int i = 0; i < N-1; ++i) {
+        int u, v; cin >> u >> v, --u, --v;
+        adj[u].eb(v), adj[v].eb(u);
+    }
+
+    dfs(0);
+
+    cout << subval[0] % mod * X % mod << "\n";
+}
+
+int32_t main() {
+    fastIO();
+
+    int t = 1; cin >> t;
+    for (int _ = 1; _ <= t; ++_) {
+        // cout << "Case #" << _ << ": ";
+        solve();
+    }
+
+    return 0;
 }
