@@ -3,3 +3,6 @@
 !*.*
 in*.txt
 *.out
+*.swp
+*.bin
+

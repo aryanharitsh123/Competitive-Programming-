@@ -27,6 +27,8 @@
         "tuple": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp",
+        "random": "cpp"
     }
 }
