@@ -88,22 +88,32 @@ lli power(lli a,lli b) {
 }
 
 void solve(int testcase) {
-    lli n;
-    cin>> n;
-    vector<lli> vec;
-    input(vec,n);
-    bool flag = false;
-
-    for(int i=1;i<n-1;i++){
-        if(vec[i]>vec[i-1] && vec[i]>vec[i+1]){
-            cout << "YES" << endl;
-            cout << i << " " << i+1 << " " << i+2 << endl;
-            flag=true;
+        int n;
+        cin>>n;
+        vector<int>a(n);
+        int x,y,z;
+        x = y = z = -1 ;
+        for(int i=0; i<n; i++){
+            cin>>a[i];
         }
-    }
-    if(flag){
-        cout << "NO" << endl;
-    }
+
+        for(int i=1; i<n-1; i++){
+            if(a[i-1] < a[i]){
+                if(a[i] > a[i+1]){
+                    x = i;
+                    y = i + 1;
+                    z = i + 2;
+                    break;
+                }
+            }
+        }
+        if( (x != y && y!= z) && (x != -1)){
+            cout<<"YES"<<endl;
+            cout<<x<<" "<<y<<" "<<z<<endl;
+        }
+        else{
+            cout<<"NO"<<endl;
+        }
 }
 
 int main() {

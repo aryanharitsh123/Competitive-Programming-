@@ -102,26 +102,29 @@ void solve() {
         }
     }
     lli sum = accumulate(vec.begin(),vec.end(),0);
-    int left = 0,right=0;
+    int left = 1,right=1;
+
     for(int i=0;i<n;i++){
-        if(vec[i]%x!=0){
-            left = i;
-        }
+      lli temp = sum - vec[i];
+      if(temp%x !=0){
+        all = false;
+        break;
+      }
+      else left++;
     }
-    for(int j=n-1;j>=0;j--){
-        if(vec[j]%x!=0){
-            right = j;
-        }
+
+    for(int i=n-1;i>=0;i--){
+      lli temp = sum - vec[i];
+      if(temp%x !=0){
+        all = false;
+        break;
+      }
+      else right ++;
     }
-    if(all){
-        cout << -1 << endl;
-    }
-    else if(sum%x!=0){
-        cout << n << endl;
-    }
-    else{
-        cout <<  n - min(left,right)-1  << endl;
-    }
+
+    if(sum%x!=0) cout << n << endl;
+    else if(all) cout << -1 << endl;
+    else cout << n - min(left,right) << endl;
 
 }
 
