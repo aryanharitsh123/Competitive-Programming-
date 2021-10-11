@@ -80,122 +80,34 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+bool solve1() {
+  string s;
+  cin >> s;
+  vector<int> d(3);
+  int x = s[0] - 'A';
+  int y = s.back() - 'A';
+  if (x == y)
+    return false;
+  d[x] = 1; d[y] = -1;
+  if (count(s.begin(), s.end(), 'A' + x) == s.length() / 2)
+    d[3 ^ x ^ y] = -1;
+  else
+    d[3 ^ x ^ y] = 1;
+  int bal = 0;
+  for (char c : s) {
+    bal += d[c - 'A'];
+    if (bal < 0) return false;
+  }
+  return bal == 0;
+}
 
-bool areBracketsBalanced(string expr) 
-{   
-    stack<char> s; 
-    char x; 
-  
-    for (int i = 0; i < expr.length(); i++)  
-    { 
-        if (expr[i] == '(' || expr[i] == '['
-            || expr[i] == '{')  
-        { 
-            // Push the element in the stack 
-            s.push(expr[i]); 
-            continue; 
-        } 
-  
-        // IF current current character is not opening 
-        // bracket, then it must be closing. So stack 
-        // cannot be empty at this point. 
-        if (s.empty()) 
-            return false; 
-  
-        switch (expr[i]) { 
-        case ')': 
-              
-            // Store the top element in a 
-            x = s.top(); 
-            s.pop(); 
-            if (x == '{' || x == '[') 
-                return false; 
-            break; 
-  
-        case '}': 
-  
-            // Store the top element in b 
-            x = s.top(); 
-            s.pop(); 
-            if (x == '(' || x == '[') 
-                return false; 
-            break; 
-  
-        case ']': 
-  
-            // Store the top element in c 
-            x = s.top(); 
-            s.pop(); 
-            if (x == '(' || x == '{') 
-                return false; 
-            break; 
-        } 
-    } 
-  
-    // Check Empty Stack 
-    return (s.empty()); 
-} 
 
 void solve(int testcase) {
-    string s;
-    cin >> s;
-    int len = s.length();
-
-    if(s[0]==s[len-1]){
-        cout << "NO" << endl;
+    if(solve1()){
+        cout << "YES\n";
     }
     else{
-        char first,last;
-        first = s[0],last = s[len-1];
-        char x;
-        
-        for(int i=0;i<len;i++){
-            if(s[i] !=first && s[i] != last){
-                x = s[i];
-                break;
-            }
-        }
-
-        //Replacing X by opening brackets
-        string s1;
-
-        for(int i=0;i<len;i++){
-            if(s[i]==first){
-                s1+='(';
-            }
-            if(s[i]==last){
-                s1+=')';
-            }
-            if(s[i]==x){
-                s1+='(';
-            }
-        }
-
-        //Replacing X by closing brackets
-        string s2;
-
-        for(int i=0;i<len;i++){
-            if(s[i]==first){
-                s2+='(';
-            }
-            if(s[i]==last){
-                s2+=')';
-            }
-            if(s[i]==x){
-                s2+=')';
-            }
-        }
-
-        bool s11 = areBracketsBalanced(s1);
-        bool s22 = areBracketsBalanced(s2);
-
-        if(s11 || s22){
-            cout << "YES" << endl;
-        }
-        else{
-            cout << "NO" << endl;
-        }
-
+        cout << "NO\n";
     }
 }
 

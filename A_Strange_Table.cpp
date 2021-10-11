@@ -85,12 +85,10 @@ lli power(lli a,lli b) {
 void solve(int testcase) {
     lli n,m,x;
     cin >> n >> m >> x;
-
+    x--;
     lli rem = x%n;
     lli div = x/n;
-
-    cout << rem << " ";
-    cout << div << endl;
+    cout << rem*m + div + 1 << endl;
 }
 
 int main() {

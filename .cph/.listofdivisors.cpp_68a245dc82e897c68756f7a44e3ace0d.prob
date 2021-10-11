@@ -1,0 +1,1 @@
+{"name":"Local: listofdivisors","url":"/Users/aryanharitsh/Competitive-Programming-/listofdivisors.cpp","tests":[{"id":1631711509032,"input":"10\n10 2 8 1 2 4 1 20 4 5","output":"28"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aryanharitsh/Competitive-Programming-/listofdivisors.cpp","group":"local","local":true}
