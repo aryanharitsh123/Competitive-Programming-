@@ -20,7 +20,6 @@ typedef long long int lli;
 #define fo(i,n) for(i=0;i<n;i++)
 #define Fo(i,k,n) for(i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
 #define ll long long
-#define REP(i,a) for(int i=0,_a=(a); i<_a; ++i)
 #define si(x)	scanf("%d",&x)
 #define sl(x)	scanf("%lld",&x)
 #define ss(s)	scanf("%s",s)
@@ -81,35 +80,39 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-  bool win[3][3];
-void solve(int testcase) {
 
+int toInt(string s){
+    int h=(s[0]-'0')*10+(s[1]-'0');
+    int m=(s[3]-'0')*10+(s[4]-'0');
+    return h*60+m;
+}
+ 
+int ispal(int a){
+    int h=a/60, m=a%60;
+    return (m==(h%10)*10+(h/10));
+}
+ 
+string tostring(int a){
+    string s="..:..";
+    int h=a/60, m=a%60;
+    s[0]=(h/10)+'0';
+    s[1]=(h%10)+'0';
+    s[3]=(m/10)+'0';
+    s[4]=(m%10)+'0';
+    return s;
+}
+
+void solve(int testcase) {
     string s;
-    int a[3];
-    REP(i,3){
-        cin>>s;
-        if(s=="scissors") a[i]=0;
-        else if(s=="paper") a[i]=1;
-        else a[i]=2;
+    cin >> s;
+    int a=toInt(s);
+    for(int i=1; i<24*60; i++){
+	int cur=(a+i)%(24*60);
+	if(ispal(cur)){
+	    cout << tostring(cur) << endl;
+	    break;
+	}
     }
-    win[0][1]=1;
-    win[1][2]=1;
-    win[2][0]=1;
-    int x=-1;
-    REP(i,3){
-        int c=0;
-        REP(j,3) if(win[a[i]][a[j]]) c++;
-        if(c==2){
-            x=i;
-            break;
-        }
-    }
-    if(x==-1) puts("?");
-    else if(x==0) puts("F");
-    else if(x==1) puts("M");
-    else puts("S");
-    
-    //getch();
 }
 
 int main() {

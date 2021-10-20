@@ -20,7 +20,6 @@ typedef long long int lli;
 #define fo(i,n) for(i=0;i<n;i++)
 #define Fo(i,k,n) for(i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
 #define ll long long
-#define REP(i,a) for(int i=0,_a=(a); i<_a; ++i)
 #define si(x)	scanf("%d",&x)
 #define sl(x)	scanf("%lld",&x)
 #define ss(s)	scanf("%s",s)
@@ -81,35 +80,28 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-  bool win[3][3];
 void solve(int testcase) {
-
-    string s;
-    int a[3];
-    REP(i,3){
-        cin>>s;
-        if(s=="scissors") a[i]=0;
-        else if(s=="paper") a[i]=1;
-        else a[i]=2;
-    }
-    win[0][1]=1;
-    win[1][2]=1;
-    win[2][0]=1;
-    int x=-1;
-    REP(i,3){
-        int c=0;
-        REP(j,3) if(win[a[i]][a[j]]) c++;
-        if(c==2){
-            x=i;
-            break;
+        string n;
+      cin>>n;
+        long long dem=20;
+        long long i,j;
+        for( i=n.size()-1;i>=0;i--)
+		     if(n[i]=='0') break;
+        for(j=i-1;j>=0;j--)
+		    if(n[j]=='0' || n[j]=='5')break;
+        if(j>=0) dem=n.size()-j-2;
+        for(i=n.size()-1;i>=0;i--)if(n[i]=='5')break;
+        for(j=i-1;j>=0;j--)if(n[j]=='7' || n[j]=='2')break;
+        if(j>=0)
+        {
+            if(dem==20)dem=n.size()-j-2;
+            else 
+            if(dem>n.length()-j-2)
+            {
+            	dem=n.length()-j-2;
+			}
         }
-    }
-    if(x==-1) puts("?");
-    else if(x==0) puts("F");
-    else if(x==1) puts("M");
-    else puts("S");
-    
-    //getch();
+        cout<<dem<<endl;
 }
 
 int main() {
@@ -118,7 +110,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  //cin >> testcases;
+  cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

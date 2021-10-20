@@ -20,7 +20,6 @@ typedef long long int lli;
 #define fo(i,n) for(i=0;i<n;i++)
 #define Fo(i,k,n) for(i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
 #define ll long long
-#define REP(i,a) for(int i=0,_a=(a); i<_a; ++i)
 #define si(x)	scanf("%d",&x)
 #define sl(x)	scanf("%lld",&x)
 #define ss(s)	scanf("%s",s)
@@ -81,35 +80,35 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-  bool win[3][3];
-void solve(int testcase) {
 
-    string s;
-    int a[3];
-    REP(i,3){
-        cin>>s;
-        if(s=="scissors") a[i]=0;
-        else if(s=="paper") a[i]=1;
-        else a[i]=2;
+bool sortbysec(const pair<int,int> &a,
+              const pair<int,int> &b)
+{
+    return (a.second < b.second);
+}
+
+void solve(int testcase) {
+    lli n,m;
+    cin >> n >> m;
+    vector<pair<lli,lli>> vec;
+    lli a,b;
+    for(int i=0;i<m;i++){
+        cin >> a >> b;
+        vec.push_back(make_pair(a,b));
     }
-    win[0][1]=1;
-    win[1][2]=1;
-    win[2][0]=1;
-    int x=-1;
-    REP(i,3){
-        int c=0;
-        REP(j,3) if(win[a[i]][a[j]]) c++;
-        if(c==2){
-            x=i;
+    sort(all(vec), sortbysec);
+    lli ans = 0;
+    for(int i=m-1;i>=0;i--){
+        if(vec[i].first>n){
+            ans+= n * vec[i].second;
             break;
         }
+        else{
+            ans+=vec[i].first*vec[i].second;
+            n-=vec[i].first;
+        }
     }
-    if(x==-1) puts("?");
-    else if(x==0) puts("F");
-    else if(x==1) puts("M");
-    else puts("S");
-    
-    //getch();
+    cout << ans << endl;
 }
 
 int main() {

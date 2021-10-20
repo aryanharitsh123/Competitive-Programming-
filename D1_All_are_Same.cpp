@@ -20,7 +20,6 @@ typedef long long int lli;
 #define fo(i,n) for(i=0;i<n;i++)
 #define Fo(i,k,n) for(i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
 #define ll long long
-#define REP(i,a) for(int i=0,_a=(a); i<_a; ++i)
 #define si(x)	scanf("%d",&x)
 #define sl(x)	scanf("%lld",&x)
 #define ss(s)	scanf("%s",s)
@@ -81,35 +80,32 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-  bool win[3][3];
-void solve(int testcase) {
 
-    string s;
-    int a[3];
-    REP(i,3){
-        cin>>s;
-        if(s=="scissors") a[i]=0;
-        else if(s=="paper") a[i]=1;
-        else a[i]=2;
-    }
-    win[0][1]=1;
-    win[1][2]=1;
-    win[2][0]=1;
-    int x=-1;
-    REP(i,3){
-        int c=0;
-        REP(j,3) if(win[a[i]][a[j]]) c++;
-        if(c==2){
-            x=i;
-            break;
-        }
-    }
-    if(x==-1) puts("?");
-    else if(x==0) puts("F");
-    else if(x==1) puts("M");
-    else puts("S");
-    
-    //getch();
+int gcd(int a, int b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+ 
+
+
+void solve(int testcase) {
+    lli n;
+    cin >> n;
+    vector<lli> arr;
+    input(arr,n);
+    sort(all(arr));
+	int k=-1;
+	for (int i=1; i<n; i++)
+	{
+		if (arr[i]-arr[i-1]!=0)
+		{
+			if (k==-1) k=arr[i]-arr[i-1];
+			else k=gcd(k,arr[i]-arr[i-1]);
+		}
+	}
+	cout<<k<<endl;
 }
 
 int main() {
@@ -118,7 +114,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  //cin >> testcases;
+  cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
