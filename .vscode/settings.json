@@ -36,6 +36,16 @@
         "map": "cpp",
         "set": "cpp",
         "span": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "__tree": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "iterator": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "vector": "cpp"
     }
 }
