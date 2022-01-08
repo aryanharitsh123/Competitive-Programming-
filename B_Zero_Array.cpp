@@ -81,29 +81,19 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
+    lli n;
+    cin >> n;
+    vector<lli> vec;
+    input(vec,n);
+    sort(all(vec));
+    lli sum1 = accumulate(vec.begin(),vec.begin()+n-1,0LL);
+    lli total = accumulate(vec.begin(),vec.begin()+n,0LL);
+    if(total%2==0 && vec[n-1]<=sum1){
+        cout << "YES\n";
+    } 
     else{
-        x  = x-ans;
+        cout << "NO\n";
     }
-    cout << x << endl;
 }
 
 int main() {
@@ -112,7 +102,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

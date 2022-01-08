@@ -81,29 +81,29 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    string s;
+    cin >> s;
+    int len = s.length();
+    string temp;
+    string temp2;
+    if(len%2==1)
+        cout << "NO\n";
+
+    else{
+        for(int i=0; i<len/2; i++){
+            temp+= s[i];
+        }
+        
+        for(int j=len/2; j<len; j++){
+            temp2 += s[j];
+        }
+
+        if(temp ==  temp2)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
     }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {

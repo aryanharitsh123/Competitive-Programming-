@@ -80,30 +80,38 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+int x[105],y[105];
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+void solve(int testcase) {
+    int a, b, n;
+    cin >> n >> a >> b;
+    for(int i = 1; i <= n; i++){ cin >> x[i] >> y[i];}
+        int ans = 0;
+    for(int i = 1; i <= n; i++)
+        for(int j = i + 1; j <= n; j++){
+            swap(x[i], y[i]);
+ 
+            if(x[i] + x[j] <= a && max(y[i], y[j]) <= b) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+            if(y[i] + y[j] <= b && max(x[i], x[j]) <= a) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+ 
+            swap(x[j], y[j]);
+ 
+            if(x[i] + x[j] <= a && max(y[i], y[j]) <= b) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+            if(y[i] + y[j] <= b && max(x[i], x[j]) <= a) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+ 
+            swap(x[i], y[i]);
+ 
+            if(x[i] + x[j] <= a && max(y[i], y[j]) <= b) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+            if(y[i] + y[j] <= b && max(x[i], x[j]) <= a) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+ 
+            swap(x[j], y[j]);
+ 
+            if(x[i] + x[j] <= a && max(y[i], y[j]) <= b) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+            if(y[i] + y[j] <= b && max(x[i], x[j]) <= a) ans = max(ans, x[i] * y[i] + x[j] * y[j]);
+        }
+    cout << ans;
+
+
 }
 
 int main() {
@@ -112,7 +120,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

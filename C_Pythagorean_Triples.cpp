@@ -81,29 +81,16 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    lli k, b;
+    cin >> k;
+    lli mod = 2 - k % 2;
+    b = (k * k / mod - mod) / 2;
+    if (b == 0) {
+        cout << -1;
     }
-    else if(n%4==1){
-        ans = -n;
+    else {
+        cout << b << " " << b + mod << endl;
     }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {
@@ -112,7 +99,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

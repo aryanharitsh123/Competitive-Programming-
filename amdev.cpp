@@ -33,6 +33,7 @@ typedef long long int lli;
 #define S second
 #define clr(x) memset(x, 0, sizeof(x))
 #define sortall(x) sort(all(x))
+#define MAXN 100005
 #define tr(it, a) for(auto it = a.begin(); it != a.end(); it++)
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
@@ -81,29 +82,14 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+	lli a,b,c;
+	cin >> a >> b >> c;
+	if(a+b < c){
+		cout << 1 < endl;
+	}
+	else{
+		cout << 0 << endl;
+	}
 }
 
 int main() {

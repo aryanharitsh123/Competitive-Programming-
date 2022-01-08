@@ -80,30 +80,36 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
+const int N = 200005;
+int p0[N];
+int p1[N];
+void solve(int testcase) {
+    string a; cin>>a;
+    string b; cin>>b;
+    for(int i = 0;i < a.length();i++) {
+        p0[i] = (a[i] == '0');
+        p1[i] = (a[i] == '1');
+        if(i) {
+            p0[i]+=p0[i - 1];
+            p1[i]+=p1[i - 1];
+        }
     }
-    else{
-        x  = x-ans;
+    long long ans = 0;
+    for(int i = 0;i < b.length();i++) {
+        int y = min((int)a.length() - 1,i);
+        int x = max(0,(int)a.length() - ((int)b.length() - i));
+        if(b[i] == '0') {
+            ans+=p1[y];
+            if(x) ans-=p1[x - 1];
+        }
+        else {
+            ans+=p0[y];
+            if(x) ans-=p0[x - 1];
+        }
     }
-    cout << x << endl;
+    cout<<ans<<endl;
+
 }
 
 int main() {
@@ -112,7 +118,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

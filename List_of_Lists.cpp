@@ -81,29 +81,31 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    int n;
+    cin >> n;
+    vector<int> vec;
+    input(vec,n);
+    map<int,int> m;
+
+    for(int i=0;i<n;i++){
+        m[vec[i]]++;
     }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    int mx = 0;
+    int count=0;
+    for(auto x: m){
+        count++;
+        mx = max(x.second,mx); 
     }
 
-    if(x%2==0){
-        x += ans;
+    if(count==1){
+        cout << 0 << endl;
     }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+    else if(mx==1)
+        cout << -1 << endl;
+    else 
+        cout << n-mx + 1 << endl;
+
+    
 }
 
 int main() {

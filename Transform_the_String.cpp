@@ -4,8 +4,6 @@ using namespace std;
 typedef long long int lli;
 
 #define all(arr) arr.begin(),arr.end()
-#define f first
-#define s second
 #define debug1(x) cout<<x<<"\n"
 #define debug2(x,y) cout<<x<<" "<<y<<"\n"
 #define debug3(x,y,z) cout<<x<<" "<<y<<" "<<z<<"\n"
@@ -39,71 +37,21 @@ typedef long long int lli;
 #define space ' '
 #define kick(t) cout << "Case #" << t+1 << ":" << endl;
 
-typedef pair<ll, ll>	pl;
-typedef vector<int>		vi;
-typedef vector<ll>		vl;
-typedef vector<pii>		vpii;
-typedef vector<pl>		vpl;
-typedef vector<vi>		vvi;
-typedef vector<vl>		vvl;
-
-template <typename T>
-void input(vector<T> &arr,lli n) {
-  T temp;
-  for(lli i=0;i<n;i++) cin>>temp, arr.push_back(temp);
-}
-
-template <typename T>
-void output(vector<T> arr) {
-  for(auto x:arr) cout<<x<<" ";
-  cout<<endl;
-}
-
-
-template <typename T>
-void input_set(set<T> &arr,lli n) {
-  T temp;
-  for(lli i=0;i<n;i++) cin>>temp, arr.insert(temp);
-}
-
-lli mul(lli a, lli b) {
-  return (a%MOD*b%MOD)%MOD;
-}
-
-lli power(lli a,lli b) {
-  lli ans = 1;
-  while(b > 0) {
-    if(b&1)
-      ans = mul(ans, a);
-    a = mul(a,a);;
-    b >>= 1;
-  }
-  return ans;
-}
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    string s;
+    string f;
+    cin >> s;
+    cin >> f;
+    int x = 100,ans = 0,y;
+    for(int i=0;i<s.length();i++){
+        x = 100;
+        for(int j=0;j<f.length();j++){
+            y=(int)(min(abs((int)s[i] - (int)f[j]),abs(26 - abs((int)s[i]-f[j]))));
+            x = min(x,y);
+        }
+        ans+=x;
     }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+cout << "Case #" << testcase+1 << ": " << ans << endl;
 }
 
 int main() {

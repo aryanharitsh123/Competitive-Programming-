@@ -36,7 +36,6 @@ typedef long long int lli;
 #define tr(it, a) for(auto it = a.begin(); it != a.end(); it++)
 #define PI 3.1415926535897932384626
 #define MOD 1000000007
-#define space ' '
 #define kick(t) cout << "Case #" << t+1 << ":" << endl;
 
 typedef pair<ll, ll>	pl;
@@ -80,30 +79,58 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+string plusMult(vector<int> A) {
+   long long int reven=A[0]%2;
+    long long int rodd=A[1]%2;
+    long long int cnt=0,cnt2=0;
+     for(int i=2;i<A.size();i++)
+     {
+         if(i%2==0 && cnt==0)
+         {
+             reven=((reven%2) * (A[i]%2))%2;
+             cnt++;
+         }
+         else if(i%2==0 && cnt>0)
+         {
+             reven= ((reven%2) +(A[i]%2))%2;
+             cnt=0;
+         }
+         else if(i%2!=0 && cnt2==0)
+         {
+             rodd=((rodd%2) * (A[i] % 2))%2;
+             cnt2++;
+         }
+          else if(i%2!=0 && cnt2>0) {
+           rodd=((rodd%2) + (A[i]%2))%2;
+           cnt2=0;
+         }
+     }
+     long long int remeven=reven%2;
+     long long int remodd=rodd%2;
+     string s;
+     if(remeven==remodd)
+     {
+         s="NEUTRAL";
+     }
+     else if(remeven>remodd)
+     {
+         s="EVEN";
+     }
+     else {
+        s="ODD";
+     }
+     return s;
+}
+
+
+void solve(int testcase) {
+    int n;
+    cin >> n;
+    vector<int> a;
+    input(a,n);
+    string x = plusMult(a);
+    cout << x;
 }
 
 int main() {
@@ -112,7 +139,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

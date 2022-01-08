@@ -80,30 +80,44 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+
+bool perfectCube(int N)
+{
+    int cube_root;
+    cube_root = round(cbrt(N));
+    if (cube_root * cube_root * cube_root == N) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+bool checkperfectsquare(int n)
+{
+    if (ceil((double)sqrt(n)) == floor((double)sqrt(n))) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    lli n;
+    cin >> n;
+    lli x,y;
+    set<int> a;
+    for(int i=1; i*i <= n; i++){
+        x = i*i;
+        a.insert(x);
     }
 
-    if(x%2==0){
-        x += ans;
+    for(int i=1; i*i*i <= n; i++){
+        x = i*i*i;
+        a.insert(x);
     }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+
+    cout << a.size() << endl;
 }
 
 int main() {

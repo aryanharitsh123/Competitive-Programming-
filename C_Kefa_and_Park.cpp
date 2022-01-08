@@ -28,7 +28,6 @@ typedef long long int lli;
 #define deb(x) cout << #x << "=" << x << endl
 #define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
 #define pb push_back
-#define mp make_pair
 #define F first
 #define S second
 #define clr(x) memset(x, 0, sizeof(x))
@@ -80,30 +79,57 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+
+void bfs(vector<int> adj[], int n, int start){
+    queue<int>q;
+    vector<int> bfs;
+    vector<int> vis(n+1,0);
+    q.push(start);
+    vis[start] = 1;
+
+    while(!q.empty()){
+        int node = q.front();
+        cout << node << endl;
+        q.pop();
+        for(auto x :  adj[node]){
+            if(!vis[x]){
+                vis[x] = 1;
+                q.push(x);
+                bfs.push_back(x);
+            }
+        }
+        output(bfs);
+    }
+}
+
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    int n,m;
+    cin >> n >> m;
+    map<int,int> mp;
+    int a;
+    for(int i=1;i<=n;i++){
+        cin >> a;
+        mp[i] = a;
     }
 
-    if(x%2==0){
-        x += ans;
+    vector<int> adj[n+1];
+
+    for(int i=0;i<n-1;i++){
+        int u,v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
-    else{
-        x  = x-ans;
+
+    vector<int> leaf;
+
+    for(int i=1;i<=n;i++){
+        if(adj[i].size()==1){
+            leaf.push_back(i);
+        }
     }
-    cout << x << endl;
+
+    bfs(adj,n,1);
 }
 
 int main() {
@@ -112,7 +138,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

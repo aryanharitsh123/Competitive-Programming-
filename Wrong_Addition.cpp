@@ -1,4 +1,10 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<map>
+#include<algorithm>
+#include<set>
+#include<cstring>
+#include<numeric>
 
 using namespace std;
 typedef long long int lli;
@@ -80,40 +86,43 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+void solve(int testcase) {
+  lli a,b;
+  cin >> a >> b;
+  string big = to_string(a);
+  string small  = to_string(b);
+  if(big.length() < small.length()){
+      swap(big,small);
+  }
+  
+  for(int i=0; i< big.length() - small.length(); i++){
+      small.insert(0,1,'0');
+  }
+  cout << small << " " << big << endl; 
+
+  string ans;
+  
+  for(int i=0;i<big.length();i++){
+      int x = big[i] - '0';
+      int y = small[i] - '0';
+      int z = x+y;
+      string temp = to_string(z);
+      ans+=temp;
+  }
+  cout << ans << endl;
+
 }
 
 int main() {
-
+  
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  lli testcases=1;
-  cin >> testcases;
+  lli testcases;
+  cin>>testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
 }
+

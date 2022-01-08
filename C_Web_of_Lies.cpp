@@ -81,7 +81,72 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
+    int n,m;
+    cin>>n>>m;
+ 
+    int frnds[n];
+    for(int i=0;i<n;i++){
+      frnds[i] = 0;
+    }
+    int noble=n;
+    for(int i=0;i<m;i++)
+    {
+        int x,y;
+        cin>>x>>y;
+        if(x>y)
+            swap(x,y);
+ 
+        x--,y--;
+ 
+        if(frnds[x]==0)
+            noble--;
+ 
+        frnds[x]++;        
+    }
+ 
+    int q;
+    cin>>q;
+ 
+    while(q--)
+    {
+        int qt;
+        cin>>qt;
+ 
+        if(qt==1)
+        {
+            int x, y;
+            cin >> x >> y;
+            if (x > y)
+                swap(x, y);
+ 
+            --x,--y;
+            if (frnds[x] == 0)
+                noble--;
+            frnds[x]++;
+        }
+ 
+        if (qt == 2)
+        {
+            int x, y;
+            cin >> x >> y;
+            if (x > y)
+                swap(x, y);
+ 
+            --x, --y;
+ 
+            frnds[x]--;
+            if (frnds[x] == 0)
+                noble++;
+        }
+ 
+        if (qt == 3)
+        {
+            cout << noble << '\n';
+        }
+
 }
+}
+
 
 int main() {
 
@@ -89,7 +154,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

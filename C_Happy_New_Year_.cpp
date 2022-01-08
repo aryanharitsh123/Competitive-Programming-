@@ -80,30 +80,28 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+string decimalToBinary(lli n)
+{
+    string s = bitset<64> (n).to_string();
+    const auto loc1 = s.find('1');
+    
+    if(loc1 != string::npos)
+        return s.substr(loc1);
+    
+    return "0";
+}
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+    lli x;
+    cin >> x;
+    string s =  decimalToBinary(x);
 
-    if(x%2==0){
-        x += ans;
+    for(int i=0; i< s.length();i++){
+        if(s[i]=='1'){
+            s[i] = '2';
+        }
     }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+    cout << s;
+
 }
 
 int main() {
@@ -112,8 +110,13 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
 }
+
+
+
+
+

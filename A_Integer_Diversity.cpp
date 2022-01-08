@@ -28,7 +28,6 @@ typedef long long int lli;
 #define deb(x) cout << #x << "=" << x << endl
 #define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
 #define pb push_back
-#define mp make_pair
 #define F first
 #define S second
 #define clr(x) memset(x, 0, sizeof(x))
@@ -81,29 +80,26 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    int n;
+    cin >> n;
+    vector<int> vec;
+    input(vec,n);
+    map<int,int> mp;
+    int ans=0;
+    for(int i=0; i<n; i++){
+        mp[vec[i]]++;
     }
-    else if(n%4==1){
-        ans = -n;
+    
+    for(auto x: mp){
+        if(x.second < 2)
+            ans++;
+        else if(x.second >=2 && x.first !=0){
+            ans+=2;
+        } 
+        else if(x.first == 0) ans++;
     }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+    cout << ans << endl;
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {

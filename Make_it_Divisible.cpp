@@ -80,30 +80,42 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        if(n==0 ){
+            
+        }
+        else if(m==0){
+            int j=0;
+            for(int i=0;i<n;i++){
+                nums1[i] = nums2[j];
+                j++;
+            }
+        }
+        else{
+            int i= m-1, j= n-1;
+            while(j>=0 && i>=0){
+                if(nums1[i]>nums2[j]){
+                    swap(nums1[i],nums2[j]);
+                    j--;
+                }
+                else{
+                    i--;
+                }
+            }
+            j=0;
+            for(int i=m;i<m+n;i++){
+                nums1[i] = nums2[j];
+                j++;
+            }
+        }
     }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+void solve(int testcase) {
+    vector<int> nums1 = {4,5,6,0,0,0};
+    vector<int> nums2 = {1,2,3};
+    int m=3,n=3;
+    merge(nums1,m,nums2,n); 
+    output(nums1);
 }
 
 int main() {
@@ -112,7 +124,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

@@ -1,4 +1,10 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<vector>
+#include<map>
+#include<algorithm>
+#include<set>
+#include<cstring>
+#include<numeric>
 
 using namespace std;
 typedef long long int lli;
@@ -80,40 +86,21 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+void solve(int testcase) {
+  int x,y;
+  cin >> x >> y;
 }
 
 int main() {
-
+  
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
 
-  lli testcases=1;
-  cin >> testcases;
+  lli testcases;
+  //cin>>testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
 }
+

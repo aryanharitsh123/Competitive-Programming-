@@ -1,0 +1,1 @@
+{"name":"Local: stringgcd","url":"/Users/aryanharitsh/Competitive-Programming-/stringgcd.cpp","tests":[{"id":1641319130955,"input":"abababab\nab","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aryanharitsh/Competitive-Programming-/stringgcd.cpp","group":"local","local":true}

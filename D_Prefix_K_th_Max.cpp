@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
-
+#include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
+using namespace __gnu_pbds;
 typedef long long int lli;
-
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> indexed_set;
 #define all(arr) arr.begin(),arr.end()
 #define f first
 #define s second
@@ -81,29 +82,21 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    lli n,k;
+    cin >> n >> k;
+    vector<lli> vec;
+    input(vec,n);
+    k--;
+    indexed_set s;
+    for(int i=0;i<k;i++){
+        s.insert(vec[i]);
+    }   
+    lli temp =0;
+    for(int i = k; i<n;i++){
+        s.insert(vec[i]);
+        auto x = s.find_by_order(s.size() - k-1);
+        cout << *x << endl;
     }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {
@@ -112,7 +105,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

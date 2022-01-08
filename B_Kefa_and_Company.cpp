@@ -4,8 +4,8 @@ using namespace std;
 typedef long long int lli;
 
 #define all(arr) arr.begin(),arr.end()
-#define f first
-#define s second
+#define fi first
+#define se second
 #define debug1(x) cout<<x<<"\n"
 #define debug2(x,y) cout<<x<<" "<<y<<"\n"
 #define debug3(x,y,z) cout<<x<<" "<<y<<" "<<z<<"\n"
@@ -81,29 +81,27 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    lli n,d;
+    cin>>n>>d;
+    pair<lli,lli> p[n];
+    for(lli i=0;i<n;i++)
+    {
+        cin>>p[i].fi>>p[i].se;
     }
-    else if(n%4==1){
-        ans = -n;
+    sort(p,p+n);
+    lli l=0;lli s=p[0].se;lli ans=s;
+    for(lli i=1;i<n;i++)
+    {
+        while(l<i&&p[i].fi>=(d+p[l].fi))
+        {
+            s-=p[l].se;
+            l++;
+        }
+            s+=p[i].se;
+        ans=max(ans,s);
     }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+    cout<<ans<<endl;
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {
@@ -112,7 +110,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

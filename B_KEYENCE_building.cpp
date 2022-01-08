@@ -81,29 +81,26 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+    int n;
+    cin >> n;
+    vector<lli> vec;
+    input(vec,n);
+    set<int> s;
+    lli x;
+    for(int i=1;i<300;i++){
+        for(int j=1;j<300;j++){
+            x = 4*i*j + 3*i + 3*j;
+                   s.insert(x);
+        }
 
-    if(x%2==0){
-        x += ans;
     }
-    else{
-        x  = x-ans;
+    int ans=0;
+    for(auto p : vec){
+        if(s.find(p) == s.end()){
+            ans++;
+        }
     }
-    cout << x << endl;
+    cout << ans;
 }
 
 int main() {
@@ -112,7 +109,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

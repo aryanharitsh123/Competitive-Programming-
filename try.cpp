@@ -81,29 +81,32 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    lli n;
+    cin>>n;
+    vector<lli> a;
+    for(lli i=0;i<n;i++)
+    {
+        lli c;
+        cin>>c;
+        a.push_back(c);
     }
-    else if(n%4==1){
-        ans = -n;
+    lli max=a[0];
+    for(lli i=0;i<n;i++)
+    {
+        if(max<a[i])
+        {
+            max=a[i];
+        }
     }
-    else if(n%4==2){
-        ans = 1;
+    lli max2=LLONG_MIN;
+    for(lli i=0;i<n;i++)
+    {
+        if(a[i]<max && a[i]>max2)
+        {
+            max2=a[i];
+        }
     }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+    cout<<max2<<endl;
 }
 
 int main() {
@@ -112,7 +115,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  /cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

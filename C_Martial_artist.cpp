@@ -28,7 +28,6 @@ typedef long long int lli;
 #define deb(x) cout << #x << "=" << x << endl
 #define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
 #define pb push_back
-#define mp make_pair
 #define F first
 #define S second
 #define clr(x) memset(x, 0, sizeof(x))
@@ -80,30 +79,45 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+
+
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    lli n;
+    cin >> n;
+    map<lli,lli> mp;
+    vector<int> adj[n+1];
+
+    lli x,y,a;
+    lli ans=0;
+    for(int i=1;i<=n;i++){
+        cin >> x >> y;
+        mp[i] = x;
+        for(int j=0;j<y;j++){
+            cin >> a;
+            adj[i].push_back(a);
+        }
     }
 
-    if(x%2==0){
-        x += ans;
+    vector<lli> vec;
+    set<lli> ss;
+    for(auto x : adj[n]){
+        vec.push_back(x);
     }
-    else{
-        x  = x-ans;
+
+    for(int i=1;i<vec.size();i++){
+        for(int j=1;j<=adj[vec[i]].size();j++){
+            ss.insert(adj[vec[i]][j]);  
+        }
     }
-    cout << x << endl;
+
+    for(auto x : ss){
+        cout <<  x <<  " ";
+        ans+=mp[x];
+    }
+    
+    for(auto x : adj[n]){
+        ans += mp[x];
+    }
 }
 
 int main() {
@@ -112,7 +126,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

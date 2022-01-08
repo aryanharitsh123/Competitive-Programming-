@@ -81,29 +81,42 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
-
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+	int n;
+	cin >> n;
+ 
+	vector<pair<int, int> > P;
+	for (int i = 0; i < n; i++)
+	{
+		int x1, y1;
+		cin >> x1 >> y1;
+ 
+		P.push_back(make_pair(x1, y1));
+	}	
+ 
+	int ans = 0;
+	for (int i = 0; i < n; i++)
+	{
+		int a = i;
+		int b = (i + 1) % n;
+ 
+		int c = b;
+		int d = (i + 2) % n;
+ 
+		int dx1 = P[b].first - P[a].first;
+		int dy1 = P[b].second - P[a].second;
+ 
+		int dx2 = P[d].first - P[c].first;
+		int dy2 = P[d].second - P[c].second;
+ 
+		int x = dx1 * dy2 - dx2 * dy1;
+ 
+		if (x > 0)
+		{
+			ans++;
+		}
+	}
+ 
+	cout << ans;
 }
 
 int main() {
@@ -112,7 +125,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

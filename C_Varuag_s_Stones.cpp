@@ -81,29 +81,46 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    lli n;
+    cin >> n;
+    lli q;
+    vector<lli> vec,pref,prefsort,sor;
+    input(vec,n);
+    cin >> q;
+    sor = vec;
+    sort(all(sor));
+
+    pref.push_back(vec[0]);
+    for(int i=1;i<n;i++){
+        pref.push_back(pref[i-1] + vec[i]);
     }
-    else if(n%4==1){
-        ans = -n;
+    prefsort.push_back(sor[0]);
+
+    for(int i=1;i<n;i++){
+        prefsort.push_back(prefsort[i-1] + sor[i]);
     }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
+    // output(vec);
+    for(int i=0;i<q;i++){
+        int type,l,r;
+        cin >> type >> l >> r;
+
+        if(type == 1){
+            if(l-2 >=0){
+                cout << pref[r-1] - pref[l-2] << endl;
+            } 
+            else{
+                cout << pref[r-1] - pref[l-1]  + pref[0] << endl;
+            }
+        }
+        if(type==2){
+            if(l-2 >=0)
+                cout << prefsort[r-1] - prefsort[l-2]  << endl;
+            else
+                cout << prefsort[r-1]  - prefsort[l-1] + prefsort[0] << endl;
+        }
     }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+
 }
 
 int main() {
@@ -112,7 +129,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

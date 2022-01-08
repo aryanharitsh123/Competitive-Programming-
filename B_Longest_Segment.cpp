@@ -81,29 +81,27 @@ lli power(lli a,lli b) {
   return ans;
 }
 void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
+    int n;
+    cin >> n;
+    vector<pair<int,int>> vec;
+    int a,b;
+    for(int i=0; i<n; i++){
+        cin >> a >> b;
+        vec.push_back(make_pair(a,b));
     }
-    else if(n%4==1){
-        ans = -n;
+    double dis;
+    double ans = INT_MIN;
+    for(int i = 0; i<n; i++){
+        for(int j=0;j<n;j++){
+            dis = sqrt(((vec[j].first - vec[i].first)*(vec[j].first - vec[i].first)) + ((vec[j].second - vec[i].second)*(vec[j].second - vec[i].second)));
+            //cout << dis << " ";
+            if(dis > ans){
+                ans = dis;
+            }
+        }
     }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
+    cout << setprecision(11) << ans;
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
 }
 
 int main() {
@@ -112,7 +110,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }

@@ -80,30 +80,39 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
-void solve(int testcase) {
-    lli x,n;
-    cin >> x >> n;
-    lli ans;
-    if(n%4==0){
-        ans =0;
-    }
-    else if(n%4==1){
-        ans = -n;
-    }
-    else if(n%4==2){
-        ans = 1;
-    }
-    else if(n%4==3){
-        ans = n+1;
-    }
 
-    if(x%2==0){
-        x += ans;
-    }
-    else{
-        x  = x-ans;
-    }
-    cout << x << endl;
+bool check( string s , int k , int l ){
+	int dp[2] = {0 , 0};
+	for( int i = 0; i < l; i++ ){
+		dp[s[i] - 'a']++;
+	}
+	if( k >= min( dp[0] , dp[1] ) )return 1;
+	for( int i = 0; i + l < (int)s.size(); i++ ){
+		dp[s[i] - 'a']--;
+		dp[s[i + l] - 'a']++;
+		if( k >= min( dp[0] , dp[1] ) )return 1;
+	}
+	return 0;
+}
+
+void solve(int testcase) {
+	int n , k;
+	cin >> n >> k;
+	string s;
+	cin >> s;
+	int l = 1 , r = n;
+	int ans = 0;
+	while( l <= r ){
+		int mid = (l + r ) >> 1;
+		if( check(s , k , mid ) ){
+			ans = max( ans , mid );
+			l = mid + 1;
+		}
+		else{
+			r = mid - 1;
+		}
+	}
+	cout << ans;
 }
 
 int main() {
@@ -112,7 +121,7 @@ int main() {
   cin.tie(NULL);
 
   lli testcases=1;
-  cin >> testcases;
+  //cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {
     solve(testcase);
   }
