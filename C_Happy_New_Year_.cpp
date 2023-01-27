@@ -83,7 +83,7 @@ lli power(lli a,lli b) {
 string decimalToBinary(lli n)
 {
     string s = bitset<64> (n).to_string();
-    const auto loc1 = s.find('1');
+    const auto loc1 = s.find('1'); 
     
     if(loc1 != string::npos)
         return s.substr(loc1);

@@ -81,50 +81,33 @@ lli power(lli a,lli b) {
   return ans;
 }
 
-vector<pair<lli,lli>> ans(4000002,{1 ,0});
-vector<lli> spf(4000002,0);
-
-
-void pre(){
-    ans[0]= {0,0};
-    ans[1] = {0,1};
-    for(lli i=2;i<=4000001;i++){
-        if(ans[i].first==1){
-            for(lli j=2*i;j<=4000001;j+=i){
-                ans[j].first = 0;
-                if(spf[j]==0)
-                spf[j]=i;
-            }
-            lli j=1, t=i;
-            while(t <=4000001){
-                ans[t].second = j*(t-t/i) + t;
-                t *= i;
-                j++;
-            }
-        }
-        else{
-            lli t = i, k=1;
-            while(t % spf[i]==0){
-                k*=spf[i];
-                t /= spf[i];
-            }
-            ans[i].second = ans[t].second * ans[k].second;
-        }
-    }
+bool isPowerOfTwo(lli n)
+{
+   if(n==0)
+   return false;
+ 
+   return (ceil(log2(n)) == floor(log2(n)));
 }
 
 void solve(int testcase) {
-    lli k;
-    cin >> k;
-    cout << (ans[4*k + 1].second + 4*k +1 -2) /2 << endl;
+  lli n;
+  cin >> n;
+  if(n/2==1)cout<<1<<"\n";
+		else{
+			lli cnt=0;
+			while(n%2!=1){
+				cnt++;
+				n=n/2;
+			}
+			cout<<cnt<<"\n";
+    }
 }
-
 
 int main() {
 
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
-  pre();
+
   lli testcases=1;
   cin >> testcases;
   for(int testcase=0; testcase<testcases; testcase++) {

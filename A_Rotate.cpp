@@ -80,14 +80,26 @@ lli power(lli a,lli b) {
   }
   return ans;
 }
+
+//abc + bca + cab
 void solve(int testcase) {
     string s;
     cin >> s;
 
-    for(int i=1;i<s.length();i++){
-        cout << s[i];
-    }
-    cout << s[0];
+    string a; 
+    a+=s[1];
+    a+=s[2]; 
+    a+=s[0];
+    string b;
+    b+=s[2];
+    b+=s[0];
+    b+=s[1];
+    int x = stoi(s);
+    int y = stoi(a);
+    int z = stoi(b);
+    cout << x+y+z;  
+
+
 }
 
 int main() {

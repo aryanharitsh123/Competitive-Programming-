@@ -1,0 +1,1 @@
+{"name":"Local: abc","url":"/Users/aryanharitsh/Competitive-Programming-/abc.cpp","tests":[{"id":1643385787078,"input":"2\n2\n2 1\n3\n3 1 2","output":"3\n4\n\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aryanharitsh/Competitive-Programming-/abc.cpp","group":"local","local":true}

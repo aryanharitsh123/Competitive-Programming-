@@ -1,0 +1,1 @@
+{"name":"Local: minoper","url":"/Users/aryanharitsh/Competitive-Programming-/minoper.cpp","tests":[{"id":1668788385610,"input":"3\n5\n5 6 6 6 7\n6\n3 4 4 3 3 4\n4\n1 1 5 7","output":"4\n6\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aryanharitsh/Competitive-Programming-/minoper.cpp","group":"local","local":true}

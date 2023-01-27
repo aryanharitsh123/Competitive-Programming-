@@ -1,0 +1,1 @@
+{"name":"Local: aaa","url":"/Users/aryanharitsh/Competitive-Programming-/aaa.py","tests":[{"id":1668792437880,"input":"1\n5 5 \n1 2\n3 2\n4 3\n5 4\n5 3","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/aryanharitsh/Competitive-Programming-/aaa.py","group":"local","local":true}
