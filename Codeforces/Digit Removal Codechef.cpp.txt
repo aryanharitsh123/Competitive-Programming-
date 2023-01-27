@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int lli;
+
+bool check(lli temp, char n){
+    string p = to_string(temp);
+
+    for(int i=0;i<p.length();i++){
+        if(p[i]==n){
+            return false;
+        }
+    }
+    return true;
+}
+int main()
+{
+    lli test;
+    cin>>test;
+    for(lli e=0;e<test;e++)
+    {
+    lli n;
+    char t2;
+    cin >> n;
+    cin >> t2;
+    int ans=0;
+    while(1){
+        if(check(n,t2)){
+            break;
+        }
+        else{
+            n++;
+            ans++;
+        }
+    }
+    cout << ans << endl;
+
+
+    }
+}
+
